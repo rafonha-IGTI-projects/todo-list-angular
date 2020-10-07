@@ -1,1 +1,22 @@
-<p>todo-list works!</p>
+<h1>To do List</h1>
+<div>
+    <h2>Insert new task</h2>
+    <input #inputDescription type="text" placeholder="Add task description" />
+    <button (click)="addTask(inputDescription.value)">Add</button>
+</div>
+<div>
+    <h2>List of tasks</h2>
+    <table>
+        <tr *ngFor="let task of tasks; let i = index">
+            <td><input type="checkbox" [checked]="task.done"></td>
+            <td>{{task.description}}</td>
+            <td><button (click)="deleteTask(i)">Delete</button></td>
+        </tr>
+    </table>
+</div>
+<br/>
+<div [ngSwitch]='tasks.length'>
+    <div *ngSwitchCase='0'>You have 0 tasks to do</div>
+    <div *ngSwitchCase='1'>You have 1 task to do</div>
+    <div *ngSwitchDefault>You have {{tasks.length}} tasks to do</div>
+</div>
